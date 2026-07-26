@@ -8,17 +8,6 @@ const nextConfig = {
     // transitions), so this is a real bundle-size win, not a micro-opt.
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
-  async rewrites() {
-    // Proxies same-origin HTTPS calls to the plain-HTTP backend server-side,
-    // since browsers block HTTPS pages from calling HTTP endpoints directly
-    // (mixed content) - server-to-server isn't subject to that restriction.
-    return [
-      {
-        source: "/api/backend/:path*",
-        destination: "http://80.225.227.90:8080/:path*",
-      },
-    ];
-  },
 };
 
 export default nextConfig;
