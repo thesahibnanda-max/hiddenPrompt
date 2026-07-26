@@ -4,6 +4,14 @@ import type { ApiErrorBody } from "./types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8080";
 
+// Allow BASE_URL to be origin-relative (e.g. "/api/backend") so production can
+// route through the same-origin rewrite proxy in next.config.mjs instead of
+// hitting the HTTP backend directly, which browsers block as mixed content.
+function resolveBaseUrl(): string {
+  if (/^https?:\/\//i.test(BASE_URL)) return BASE_URL;
+  return `${window.location.origin}${BASE_URL}`;
+}
+
 interface ApiFetchOptions {
   method?: "GET" | "POST";
   body?: unknown;
@@ -15,7 +23,7 @@ interface ApiFetchOptions {
 export async function apiFetch<T>(path: string, opts: ApiFetchOptions = {}): Promise<T> {
   const { method = "GET", body, query, auth = true } = opts;
 
-  const url = new URL(BASE_URL.replace(/\/$/, "") + path);
+  const url = new URL(resolveBaseUrl().replace(/\/$/, "") + path);
   if (query) {
     Object.entries(query).forEach(([k, v]) => url.searchParams.set(k, v));
   }
