@@ -1,0 +1,14 @@
+{% func HintUser(hiddenPrompt, canonicalAnswer, history, guess, difficulty string, currentScore, previousBest int, historyLimit uint, gapHint string) %}
+Hidden:{%s hiddenPrompt %}
+Answer:{%s canonicalAnswer %}
+{% if historyLimit > 0 %}
+History(last {%d int(historyLimit) %} only):{%s history %}
+{% else %}
+History:{%s history %}
+{% endif %}
+Guess:{%s guess %}
+GuessScore:{%d currentScore %}/100
+PreviousBestScore:{%d previousBest %}/100
+Difficulty:{%s difficulty %}
+GapHint:{%s gapHint %}
+{% endfunc %}

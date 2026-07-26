@@ -1,0 +1,17 @@
+{% func GeneratePuzzleUser(difficulty string, gamesPlayed uint, style string, styleAngles string, recentPuzzles []string, usedAnswers []string) %}
+Difficulty:{%s difficulty %}
+Games:{%d int(gamesPlayed) %}
+Style:{%s style %} - try one of these angles: {%s styleAngles %}
+{% if len(recentPuzzles) > 0 %}
+Recently used question -> answer pairs for this player - never repeat a question or anything too similar to these:
+{% for _, p := range recentPuzzles %}
+- {%s p %}
+{% endfor %}
+{% endif %}
+{% if len(usedAnswers) > 0 %}
+Answers this player has ever been given, across their entire history - NEVER reuse any of these, no matter how long ago or under what question:
+{% for _, a := range usedAnswers %}
+- {%s a %}
+{% endfor %}
+{% endif %}
+{% endfunc %}

@@ -1,0 +1,23 @@
+# AI tool configs
+.claude/
+.gemini/
+.cursor/
+.windsurf/
+.aider/
+.aider*
+.copilot/
+.cody/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Env files
+*.env
+.env.*
+!.env.example
+!*/.env.example

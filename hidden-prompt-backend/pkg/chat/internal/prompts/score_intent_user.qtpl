@@ -1,0 +1,5 @@
+{% func ScoreIntentUser(targetIntent, givenIntent string) %}
+Target:{%s targetIntent %}
+Given:{%s givenIntent %}
+JSON only, no backticks: {"intent_score": <0-100>, "gap": "<3-6 words>"}
+{% endfunc %}

@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  border-color: theme("colors.border");
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  @apply bg-void text-chrome-light font-body antialiased;
+  background-color: #0a0118;
+}
+
+::selection {
+  background: rgba(255, 46, 196, 0.35);
+  color: #f4f4f8;
+}
+
+.chrome-text {
+  @apply bg-chrome-text bg-clip-text bg-[length:100%_200%] font-display text-transparent;
+}
+
+.scanline-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.035) 0px,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+}
+
+.glow-border {
+  @apply border border-neon-cyan/40 shadow-neon;
+}
+
+.card-panel {
+  @apply rounded-lg border border-white/10 bg-card backdrop-blur-md;
+}
+
+/* Custom scrollbar, on-theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0118;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff2ec4, #22e8f0);
+  border-radius: 999px;
+}
